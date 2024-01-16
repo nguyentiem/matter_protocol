@@ -1,0 +1,31 @@
+$ cd ot-br-posix
+$ ./script/bootstrap
+$ INFRA_IF_NAME=wlan0 ./script/setup
+ 
+INFRA_IF_NAME=eth0 ./script/setup
+ 
+sudo service otbr-agent status
+sudo service otbr-agent restart
+ 
+ 
+sudo ot-ctl dataset init new
+sudo ot-ctl dataset commit active
+sudo ot-ctl ifconfig up
+sudo ot-ctl thread start
+sudo ot-ctl state
+ 
+parse QR code :
+./chip-tool payload parse-setup-payload MT:8IXS142C00KA0648G00
+ 
+start bluetooth on nordic 
+	an giu button 4  tren mach nordic
+	button 2: 
+	button1: 
+	button 3:
+ 
+./chip-tool pairing ble-thread 10 hex:0e080000000000010000000300000e35060004001fffe00208c6338cb46dccdbbf0708fdeacc727788632e05104c137c0d982c5c9c833b2b03b61f7d1e030f4f70656e5468726561642d653638350102e6850410ae5d9e8c77374b90072a17db098106610c0402a0f7f8 20202021 3840
+ 
+change doorlock
+ 
+./chip-tool doorlock lock-door 10 1 --timedInteractionTimeoutMs 1000
+./chip-tool doorlock unlock-door 10 1 --timedInteractionTimeoutMs 1000
